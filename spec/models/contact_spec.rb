@@ -5,7 +5,7 @@ describe Contact do
     contact = Contact.new(
       firstname: "Christine",
       lastname: "Feaster",
-      email: "c.feaster@test.com"
+      email: "cfeaster@test.com"
       )
 
     expect(contact).to be_valid
@@ -58,6 +58,48 @@ describe Contact do
       )
 
     expect(contact.name).to eq "Jane Doe"
+  end
+
+  # == Class methods and Scopes
+
+  it "returns a sorted array of results that match" do
+    smith = Contact.create(
+      firstname: "John",
+      lastname: "Smith",
+      email: "jsmith@test.com"
+      )
+    feaster = Contact.create(
+      firstname: "Christine",
+      lastname: "Feaster",
+      email: "cfeaster@test.com"
+      )
+    fennimore = Contact.create(
+      firstname: "Neal",
+      lastname: "Fennimore",
+      email: "nfennimore@test.com"
+      )
+
+    expect(Contact.by_letter("F")).to eq [feaster, fennimore]
+  end
+
+  it "returns a sorted array of results that match" do
+    smith = Contact.create(
+      firstname: "John",
+      lastname: "Smith",
+      email: "jsmith@test.com"
+      )
+    feaster = Contact.create(
+      firstname: "Christine",
+      lastname: "Feaster",
+      email: "cfeaster@test.com"
+      )
+    fennimore = Contact.create(
+      firstname: "Neal",
+      lastname: "Fennimore",
+      email: "nfennimore@test.com"
+      )
+
+    expect(Contact.by_letter("F")).to_not include [smith]
   end
 
 end
