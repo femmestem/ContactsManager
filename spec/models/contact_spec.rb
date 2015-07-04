@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Contact do
   it "has a valid factory" do
-    expect(FactoryGirl.build(:contact)).to be_valid
+    expect(build(:contact)).to be_valid
   end
 
   it "is invalid without a firstname" do
@@ -21,14 +21,14 @@ describe Contact do
   end
 
   it "is invalid with a duplicate email address" do
-    FactoryGirl.create(:contact, email: "jdoe@test.com")
-    contact = FactoryGirl.build(:contact, email: "jdoe@test.com")
+    create(:contact, email: "jdoe@test.com")
+    contact = build(:contact, email: "jdoe@test.com")
 
     expect(contact).to have(1).errors_on(:email)
   end
 
   it "returns a contact's full name as string" do
-    contact = FactoryGirl.build(:contact)
+    contact = build(:contact)
     expect(contact.name).to eq "Jane Doe"
   end
 
@@ -36,9 +36,9 @@ describe Contact do
 
   describe "filter last name by letter" do
     before :each do
-      @smith = FactoryGirl.create(:contact, lastname: "Smith")
-      @feaster = FactoryGirl.create(:contact, lastname: "Feaster")
-      @fennimore = FactoryGirl.create(:contact, lastname: "Fennimore")
+      @smith = create(:contact, lastname: "Smith")
+      @feaster = create(:contact, lastname: "Feaster")
+      @fennimore = create(:contact, lastname: "Fennimore")
     end
 
     context "matching letters" do
