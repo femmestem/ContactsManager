@@ -32,6 +32,10 @@ describe Contact do
     expect(contact.name).to eq "Jane Doe"
   end
 
+  it "has three phone numbers" do
+    expect(create(:contact).phones.count).to eq 3
+  end
+
   # == Class methods and Scopes
 
   describe "filter last name by letter" do
